@@ -1,4 +1,4 @@
--- 12.	We need a table to show the Fail Rate per Talabat week, sorted by talabat week.
+-- We need a table to show the Fail Rate per Talabat week.
 
 SELECT 
 (1-(SUM(orders.is_successful))/COUNT(orders.is_successful))*100 AS failure_rate,
@@ -8,7 +8,7 @@ LEFT JOIN orders ON STR_TO_DATE(orders.order_time,'%m/%d/%Y') = STR_TO_DATE(dis_
 GROUP BY talabat_week
 ORDER BY STR_TO_DATE(dis_dates.talabat_week,'%d-%b-%Y');
 
--- 13.	How many customers churned in December (i.e. ordered in November and did not in December)? 
+-- How many customers churned in December (i.e. ordered in November and did not in December)? 
 -- 2487 customer churned in December
     
     WITH customer_activity AS (
@@ -66,7 +66,7 @@ GROUP BY
     analytical_customer_id
 ORDER BY customer_segment;
 
- /* 14.	We want to track if our customers pay more with each new order.
+ /* We want to track if our customers pay more with each new order.
  For this, we need to know: In how many orders did the customer pay more than 
  their previous order? Ignore each customer's first order since we cannot know
  if it was more than the previous one. 
@@ -92,7 +92,7 @@ ORDER BY
 ;
 
 
--- 15.calculate the MTD (Month-To-Date) active customers for every day. 
+-- calculate the MTD (Month-To-Date) active customers for every day. 
 
 SELECT
   order_date,
@@ -136,7 +136,7 @@ ORDER BY MTD DESC;
   
   
   
- /* 16.same MTD calculation but for % of retained customers.
+ /* same MTD calculation but for % of retained customers.
  The query for this question isn't correct since I couldn't find a way to only
 sum distinct customers by each passing day in the month. */
   
